@@ -57,9 +57,51 @@
         .map-container { width: 100%; height: 400px; margin: 20px 0; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; }
         .map-container iframe, .map-container .root_daum_roughmap { width: 100% !important; height: 100% !important; border: none; display: block; }
 
-        .contact-btn { display: inline-block; padding: 15px 40px; background-color: #e58f8b; color: #ffffff; text-decoration: none; border-radius: 30px; font-weight: bold; font-size: 18px; box-shadow: 0 4px 10px rgba(229, 143, 139, 0.4); transition: all 0.3s ease; }
+        .contact-btn { display: inline-block; padding: 15px 40px; background-color: #e58f8b; color: #ffffff; text-decoration: none; border-radius: 30px; font-weight: bold; font-size: 18px; box-shadow: 0 4px 10px rgba(229, 143, 139, 0.4); transition: all 0.3s ease; cursor: pointer; border: none; }
         .contact-btn:hover { background-color: #d47a76; transform: translateY(-2px); box-shadow: 0 6px 15px rgba(229, 143, 139, 0.5); }
         .map-btn { display: inline-block; margin-top: 15px; padding: 10px 25px; background-color: #03c75a; color: #ffffff; text-decoration: none; border-radius: 5px; font-weight: bold; }
+
+        /* 팝업(모달) 디자인 */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-box {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            animation: fadeIn 0.3s ease;
+        }
+        .modal-box h3 { color: #e58f8b; margin-top: 0; font-size: 22px; border-bottom: 2px solid #f6d1cc; padding-bottom: 10px; }
+        .modal-box p { font-size: 16px; margin: 15px 0; color: #4a4a4a; }
+        .modal-box a { color: #e58f8b; font-weight: bold; text-decoration: none; font-size: 18px; }
+        .modal-box a:hover { text-decoration: underline; }
+        .close-btn {
+            margin-top: 20px;
+            padding: 10px 25px;
+            background-color: #6a5750;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            font-size: 15px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .close-btn:hover { background-color: #55443e; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
         footer { background-color: #6a5750; color: #e0e0e0; padding: 40px 20px; text-align: center; font-size: 14px; }
 
@@ -105,8 +147,36 @@
         <img src="메인화면.png" alt="베베온 프리미엄 산후케어" class="hero-img">
         
         <br>
-        <a href="#cs" class="contact-btn">상담 및 예약문의</a>
+        <!-- 상담 및 예약문의 버튼 (클릭 시 팝업 오픈) -->
+        <button type="button" class="contact-btn" onclick="openModal()">상담 및 예약문의</button>
     </div>
+
+    <!-- 팝업창(모달) 구조 -->
+    <div id="contactModal" class="modal-overlay">
+        <div class="modal-box">
+            <h3>베베온 산후케어 문의</h3>
+            <p>상담은 365일 언제든지 가능합니다.</p>
+            <p><strong>대표전화:</strong><br><a href="tel:041-631-6880">041-631-6880</a></p>
+            <p><strong>휴대전화:</strong><br><a href="tel:010-8618-6880">010-8618-6880</a></p>
+            <button type="button" class="close-btn" onclick="closeModal()">확인</button>
+        </div>
+    </div>
+
+    <script>
+        function openModal() {
+            document.getElementById('contactModal').style.display = 'flex';
+        }
+        function closeModal() {
+            document.getElementById('contactModal').style.display = 'none';
+        }
+        // 팝업 바깥 영역을 눌러도 닫히도록 설정
+        window.onclick = function(event) {
+            var modal = document.getElementById('contactModal');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+    </script>
 
     <div id="about" class="content-section">
         <h3>센터소개 및 오시는 길</h3>
