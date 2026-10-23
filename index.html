@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="naver-site-verification" content="8c3ff5544e0cc1566d2abe1e5e7aaf7abd4e2bda" />
     <title>베베온 산후케어 센터</title>
+    <link rel="icon" href="화면 캡처 2026-10-21 143916.png">
     <style>
         html { scroll-behavior: smooth; }
         body { font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif; margin: 0; padding: 0; color: #4a4a4a; background-color: #fff9f8; line-height: 1.6; word-break: keep-all; }
@@ -57,8 +58,13 @@
         .map-container { width: 100%; height: 400px; margin: 20px 0; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; }
         .map-container iframe, .map-container .root_daum_roughmap { width: 100% !important; height: 100% !important; border: none; display: block; }
 
+        /* 버튼 그룹 디자인 */
+        .btn-group { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-top: 20px; }
         .contact-btn { display: inline-block; padding: 15px 40px; background-color: #e58f8b; color: #ffffff; text-decoration: none; border-radius: 30px; font-weight: bold; font-size: 18px; box-shadow: 0 4px 10px rgba(229, 143, 139, 0.4); transition: all 0.3s ease; cursor: pointer; border: none; }
         .contact-btn:hover { background-color: #d47a76; transform: translateY(-2px); box-shadow: 0 6px 15px rgba(229, 143, 139, 0.5); }
+        .naver-btn { display: inline-block; padding: 15px 40px; background-color: #03c75a; color: #ffffff; text-decoration: none; border-radius: 30px; font-weight: bold; font-size: 18px; box-shadow: 0 4px 10px rgba(3, 199, 90, 0.4); transition: all 0.3s ease; }
+        .naver-btn:hover { background-color: #02b350; transform: translateY(-2px); box-shadow: 0 6px 15px rgba(3, 199, 90, 0.5); }
+        
         .map-btn { display: inline-block; margin-top: 15px; padding: 10px 25px; background-color: #03c75a; color: #ffffff; text-decoration: none; border-radius: 5px; font-weight: bold; }
 
         /* 팝업(모달) 디자인 */
@@ -115,6 +121,7 @@
             .hero-img { height: 280px; }
             .content-section { margin: 20px 15px; padding: 20px; }
             .care-gallery { grid-template-columns: 1fr; }
+            .btn-group { flex-direction: column; gap: 10px; }
         }
     </style>
 </head>
@@ -146,9 +153,10 @@
         
         <img src="메인화면.png" alt="베베온 프리미엄 산후케어" class="hero-img">
         
-        <br>
-        <!-- 상담 및 예약문의 버튼 (클릭 시 팝업 오픈) -->
-        <button type="button" class="contact-btn" onclick="openModal()">상담 및 예약문의</button>
+        <div class="btn-group">
+            <button type="button" class="contact-btn" onclick="openModal()">전화 상담문의</button>
+            <a href="여기에_네이버예약_주소를_넣어주세요" target="_blank" class="naver-btn">네이버 예약하기</a>
+        </div>
     </div>
 
     <!-- 팝업창(모달) 구조 -->
@@ -158,7 +166,12 @@
             <p>상담은 365일 언제든지 가능합니다.</p>
             <p><strong>대표전화:</strong><br><a href="tel:041-631-6880">041-631-6880</a></p>
             <p><strong>휴대전화:</strong><br><a href="tel:010-8618-6880">010-8618-6880</a></p>
-            <button type="button" class="close-btn" onclick="closeModal()">확인</button>
+            
+            <div style="margin-top: 20px;">
+                <a href="여기에_네이버예약_주소를_넣어주세요" target="_blank" class="naver-btn" style="padding: 10px 25px; font-size: 16px;">네이버로 예약하기</a>
+            </div>
+            
+            <button type="button" class="close-btn" onclick="closeModal()">닫기</button>
         </div>
     </div>
 
